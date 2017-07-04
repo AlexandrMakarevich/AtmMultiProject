@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AtmCore/AtmCore.iml" filepath="$PROJECT_DIR$/AtmCore/AtmCore.iml" />
       <module fileurl="file://$PROJECT_DIR$/AtmMultiProject.iml" filepath="$PROJECT_DIR$/AtmMultiProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AtmServer/AtmServer.iml" filepath="$PROJECT_DIR$/AtmServer/AtmServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/AtmTerminal/AtmTerminal.iml" filepath="$PROJECT_DIR$/AtmTerminal/AtmTerminal.iml" />
     </modules>
   </component>
