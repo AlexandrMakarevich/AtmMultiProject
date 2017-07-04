@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddCommand implements Command {
@@ -24,7 +25,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void executeDb(int accountId) throws SQLException {
+    public List<PrintBalance> executeDb(int accountId) throws SQLException {
         Optional<Integer> currencyExist = checkCurrency(currency);
         if (!currencyExist.isPresent()) {
             LOGGER.info("You don't have money on currency " + currency);
@@ -46,9 +47,17 @@ public class AddCommand implements Command {
         if (rowCount == 0) {
             throw new IllegalStateException("No column has been changed !");
         }
+        PrintBalance printBalance = new PrintBalance(currency, amount);
+        List<PrintBalance> listAddBalance = new ArrayList<>();
+        listAddBalance.add(printBalance);
         String formattedString = String.format("Added %d in currency %s.", amount, currency);
-        System.out.println(formattedString);
         LOGGER.info(formattedString);
+        return listAddBalance;
+    }
+
+    @Override
+    public CommandName getCommandOperation() {
+        return CommandName.ADD;
     }
 
     public Optional<Integer> checkCurrency(String currencyInput) {

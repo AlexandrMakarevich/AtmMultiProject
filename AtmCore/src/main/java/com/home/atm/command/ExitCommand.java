@@ -2,16 +2,23 @@ package com.home.atm.command;
 
 import org.apache.log4j.Logger;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ExitCommand implements Command {
 
     private static final Logger LOGGER = Logger.getLogger(ExitCommand.class);
 
     @Override
-    public void executeDb(int accountName) throws SQLException {
-        System.out.println("Get command close.");
-        LOGGER.info("Get command close.");
-        System.exit(0);
+    public List<PrintBalance> executeDb(int accountName) throws SQLException {
+        LOGGER.info("Get command exit.");
+        return Collections.emptyList();
+    }
+
+    @Override
+    public CommandName getCommandOperation() {
+        return CommandName.EXIT;
     }
 
     @Override

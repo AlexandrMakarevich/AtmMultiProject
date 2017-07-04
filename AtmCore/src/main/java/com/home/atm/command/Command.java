@@ -1,8 +1,11 @@
 package com.home.atm.command;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface Command {
 
-    void executeDb(int accountName) throws SQLException;
+    List<PrintBalance> executeDb(int accountName) throws SQLException;
+
+    CommandName getCommandOperation();
 }

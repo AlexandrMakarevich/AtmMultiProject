@@ -30,29 +30,22 @@ public class PrintBalanceCommand implements Command {
     }
 
     @Override
-    public void executeDb(int accountId) throws SQLException {
+    public List<PrintBalance> executeDb(int accountId) {
         String query = "select currency_name cn,balance b" +
                 " from debit d inner join account a on a.id = d.account_id" +
                 " inner join currency c on c.id = d.currency_id" +
                 " where d.account_id = :p_account_id";
         SqlParameterSource namedParameters = new MapSqlParameterSource("p_account_id", accountId);
-        List<PrintBalance> accountBalance = namedParameterJdbcTemplate.query(
-                query, namedParameters, new RowMapper<PrintBalance>() {
+        return namedParameterJdbcTemplate.query(query, namedParameters, new RowMapper<PrintBalance>() {
             @Override
             public PrintBalance mapRow(ResultSet rs, int rowNum) throws SQLException {
                 return new PrintBalance(rs.getString("cn"), rs.getInt("b"));
             }
         });
+    }
 
-        if (accountBalance.isEmpty()) {
-            System.out.println("You don't have money on balance");
-            return;
-        }
-        for (PrintBalance balanceService : accountBalance) {
-            String formattedString = String.format("Your balance is %d in currency %s.", balanceService.getBalance(),
-                    balanceService.getCurrency());
-            System.out.println(formattedString);
-            LOGGER.info(formattedString);
-        }
+    @Override
+    public CommandName getCommandOperation() {
+        return CommandName.PRINT;
     }
 }

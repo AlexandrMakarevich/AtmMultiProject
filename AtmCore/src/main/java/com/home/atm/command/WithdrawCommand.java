@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WithdrawCommand implements Command {
@@ -23,20 +24,27 @@ public class WithdrawCommand implements Command {
     }
 
     @Override
-    public void executeDb(int accountName) throws SQLException {
+    public List<PrintBalance> executeDb(int accountName) {
         int balance = getBalance(accountName, currency);
         if ((balance - amount) < 0) {
-            System.out.println("Not enough money on the account!");
             LOGGER.info("Not enough money on the account!");
-            return;
+            throw new IllegalArgumentException("Not enough money on the account!");
         }
-        withdrawProcesss(currency, accountName);
+        withdrawProcess(currency, accountName);
+        PrintBalance printBalance = new PrintBalance(currency, amount);
+        List<PrintBalance> listWithdrawBalance = new ArrayList<>();
+        listWithdrawBalance.add(printBalance);
         String formattedString = String.format("Removed from your account %d %s.", amount, currency);
-        System.out.println(formattedString);
         LOGGER.info(formattedString);
+        return listWithdrawBalance;
     }
 
-    public void withdrawProcesss(String currencyName, int accountName) throws SQLException {
+    @Override
+    public CommandName getCommandOperation() {
+        return CommandName.WITHDRAW;
+    }
+
+    public void withdrawProcess(String currencyName, int accountName) {
         String query = "update debit d inner join currency c on c.id = d.currency_id " +
                 "set balance = balance - :p_balance where account_id = :p_account_id " +
                 "and currency_name = :p_currency_name";
@@ -47,7 +55,7 @@ public class WithdrawCommand implements Command {
         namedParameterJdbcTemplate.update(query, namedParameters);
     }
 
-    public int getBalance(int accountName, String currencyName) throws SQLException {
+    public int getBalance(int accountName, String currencyName) {
         String query = "select balance b from debit d inner join currency c on c.id = d.currency_id " +
                 "where account_id = :p_account_id and currency_name = :p_currency_name for update";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
@@ -63,7 +71,6 @@ public class WithdrawCommand implements Command {
         if (!balanceList.isEmpty()) {
             return balanceList.get(0);
         }
-        System.out.println("You don't have money on currency " + currency);
         LOGGER.warn("You don't have money on currency " + currency);
         throw new IllegalStateException("You don't have money on this currency!");
     }
