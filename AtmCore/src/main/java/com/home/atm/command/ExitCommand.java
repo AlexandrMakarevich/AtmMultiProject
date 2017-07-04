@@ -1,8 +1,6 @@
 package com.home.atm.command;
 
 import org.apache.log4j.Logger;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +9,7 @@ public class ExitCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(ExitCommand.class);
 
     @Override
-    public List<PrintBalance> executeDb(int accountName) throws SQLException {
+    public List<PrintBalance> executeDb(int accountName) {
         LOGGER.info("Get command exit.");
         return Collections.emptyList();
     }

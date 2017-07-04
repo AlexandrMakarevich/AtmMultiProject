@@ -25,7 +25,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public List<PrintBalance> executeDb(int accountId) throws SQLException {
+    public List<PrintBalance> executeDb(int accountId) {
         Optional<Integer> currencyExist = checkCurrency(currency);
         if (!currencyExist.isPresent()) {
             LOGGER.info("You don't have money on currency " + currency);
