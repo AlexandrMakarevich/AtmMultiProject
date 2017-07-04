@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AtmCore/AtmCore.iml" filepath="$PROJECT_DIR$/AtmCore/AtmCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AtmMultiProject.iml" filepath="$PROJECT_DIR$/AtmMultiProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AtmTerminal/AtmTerminal.iml" filepath="$PROJECT_DIR$/AtmTerminal/AtmTerminal.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:component-scan base-package="com.home.atm"/>
+    <context:property-placeholder location="classpath:atm.properties"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource"  ref="dataSource" />
+    </bean>
+
+    <bean id="autoPatcher" class="com.tacitknowledge.util.migration.jdbc.AutoPatchService" init-method="patch">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="patchPath" value="${patchPath}"/>
+        <property name="systemName" value="${systemName}"/>
+        <property name="databaseType" value="${databaseType}"/>
+    </bean>
+
+    <util:list id="listOfParsers" value-type="com.home.atm.command.parser_command.InputParser">
+        <ref bean="printParser"/>
+        <ref bean="addParser"/>
+        <ref bean="exitParser"/>
+        <ref bean="withdrawParser"/>
+    </util:list>
+
+</beans>
