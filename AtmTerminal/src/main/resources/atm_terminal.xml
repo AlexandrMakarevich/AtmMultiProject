@@ -16,6 +16,8 @@
 
     <util:map id="mapResultCommand" key-type="com.home.atm.command.CommandName" value-type="com.home.atm.output.OutputResult">
         <entry key="ADD" value-ref="addOutputResult"/>
+        <entry key="WITHDRAW" value-ref="withdrawOutputResult"/>
+        <entry key="PRINT" value-ref="printOutputResult"/>
     </util:map>
 
 </beans>

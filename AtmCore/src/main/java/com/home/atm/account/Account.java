@@ -1,4 +1,4 @@
-package com.home.atm;
+package com.home.atm.account;
 
 import java.util.Objects;
 
