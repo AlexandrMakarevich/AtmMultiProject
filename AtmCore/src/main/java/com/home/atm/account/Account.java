@@ -12,6 +12,10 @@ public class Account {
         this.accountId = accountId;
     }
 
+    public Account() {
+
+    }
+
     public String getAccountName() {
         return accountName;
     }
