@@ -18,6 +18,7 @@
         <entry key="ADD" value-ref="addOutputResult"/>
         <entry key="WITHDRAW" value-ref="withdrawOutputResult"/>
         <entry key="PRINT" value-ref="printOutputResult"/>
+        <entry key="EXIT" value-ref="exitOutputResult"/>
     </util:map>
 
 </beans>
