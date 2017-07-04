@@ -7,4 +7,5 @@ public interface InputParser {
     boolean commandMatch(String inputString);
 
     Command parseInput(String inputString);
+
 }

@@ -35,4 +35,5 @@ public class WithdrawParser implements InputParser {
         }
         throw new IllegalArgumentException("Wrong command : " + inputString);
     }
+
 }
