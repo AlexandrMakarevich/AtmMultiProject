@@ -1,6 +1,8 @@
 package com.home.atm.command;
 
 import com.google.common.base.Optional;
+import com.home.atm.exception.AtmException;
+import com.home.atm.exception.ErrorCodes;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -29,7 +31,7 @@ public class AddCommand implements Command {
         Optional<Integer> currencyExist = checkCurrency(currency);
         if (!currencyExist.isPresent()) {
             LOGGER.info("You don't have money on currency " + currency);
-            throw new IllegalArgumentException("You don't have money on currency !");
+            throw new AtmException(ErrorCodes.NO_CURRENCY);
         }
         String query = " insert into debit(account_id, currency_id, balance) " +
                 "select :p_account_id account_id, c.id, IFNULL(d.balance,:p_balance) " +
@@ -45,7 +47,7 @@ public class AddCommand implements Command {
         namedParameters.addValue("p_balance", amount);
         int rowCount = namedParameterJdbcTemplate.update(query, namedParameters);
         if (rowCount == 0) {
-            throw new IllegalStateException("No column has been changed !");
+            throw new AtmException(ErrorCodes.NO_CHANGES);
         }
         PrintBalance printBalance = new PrintBalance(currency, amount);
         List<PrintBalance> listAddBalance = new ArrayList<>();
@@ -88,5 +90,4 @@ public class AddCommand implements Command {
     public int hashCode() {
         return java.util.Objects.hash(currency, amount);
     }
-
 }

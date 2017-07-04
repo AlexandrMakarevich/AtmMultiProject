@@ -1,6 +1,8 @@
 package com.home.atm.command;
 
 import com.google.common.base.Objects;
+import com.home.atm.exception.AtmException;
+import com.home.atm.exception.ErrorCodes;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -28,7 +30,7 @@ public class WithdrawCommand implements Command {
         int balance = getBalance(accountName, currency);
         if ((balance - amount) < 0) {
             LOGGER.info("Not enough money on the account!");
-            throw new IllegalArgumentException("Not enough money on the account!");
+            throw new AtmException(ErrorCodes.NOT_ENOUGH_MONEY);
         }
         withdrawProcess(currency, accountName);
         PrintBalance printBalance = new PrintBalance(currency, amount);
@@ -72,7 +74,7 @@ public class WithdrawCommand implements Command {
             return balanceList.get(0);
         }
         LOGGER.warn("You don't have money on currency " + currency);
-        throw new IllegalStateException("You don't have money on this currency!");
+        throw new AtmException(ErrorCodes.NO_MONEY_ON_THIS_CURRENCY);
     }
 
     @Override
