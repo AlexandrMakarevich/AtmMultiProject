@@ -1,5 +1,6 @@
 package com.home.atm.command;
 
+import com.google.common.base.Objects;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -47,5 +48,18 @@ public class PrintBalanceCommand implements Command {
     @Override
     public CommandName getCommandOperation() {
         return CommandName.PRINT;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PrintBalanceCommand that = (PrintBalanceCommand) o;
+        return Objects.equal(namedParameterJdbcTemplate, that.namedParameterJdbcTemplate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(namedParameterJdbcTemplate);
     }
 }
