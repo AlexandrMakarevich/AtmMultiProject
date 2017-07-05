@@ -1,4 +1,4 @@
-package com.home.atm.client.exception;
+package com.home.atm.exception;
 
 public class CustomAtmException extends RuntimeException {
 

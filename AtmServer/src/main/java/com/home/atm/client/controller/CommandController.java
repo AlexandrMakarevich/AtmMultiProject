@@ -2,7 +2,7 @@ package com.home.atm.client.controller;
 
 
 import com.home.atm.client.CommandBean;
-import com.home.atm.client.exception.CustomAtmException;
+import com.home.atm.exception.CustomAtmException;
 import com.home.atm.client.validator.CommandValidator;
 import com.home.atm.command.Command;
 import com.home.atm.command.CommandName;
