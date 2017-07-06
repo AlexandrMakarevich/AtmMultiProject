@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TestPrintBalanceCommand extends BaseCommandTest {
+public class TestPrintBalanceCommand extends BaseIntegrationTest {
 
-    @Resource(name = "printBalance")
+    @Resource(name = "printBalanceCommand")
     private Command command;
 
     @Resource

@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
-public class TestWithdrawCommand extends BaseCommandTest {
+public class TestWithdrawCommand extends BaseIntegrationTest {
 
     private WithdrawCommand withdrawCommand;
     private String currencyName = "rub";

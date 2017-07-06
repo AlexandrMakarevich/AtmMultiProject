@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:atmServer-test.xml")
-public class BaseCommandTest {
+@ContextConfiguration(locations = "classpath:atmCore-test.xml")
+public abstract class BaseIntegrationTest {
 
     @Resource
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;

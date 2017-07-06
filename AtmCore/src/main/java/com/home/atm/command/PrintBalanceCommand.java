@@ -2,6 +2,7 @@ package com.home.atm.command;
 
 import com.google.common.base.Objects;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,20 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Repository("printBalance")
+@Repository("printBalanceCommand")
 public class PrintBalanceCommand implements Command {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private static final Logger LOGGER = Logger.getLogger(PrintBalanceCommand.class);
 
-    @Resource
-    public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-    }
-
-    public PrintBalanceCommand() {
-    }
-
+    @Autowired
     public PrintBalanceCommand(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
@@ -50,16 +44,4 @@ public class PrintBalanceCommand implements Command {
         return CommandName.PRINT;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PrintBalanceCommand that = (PrintBalanceCommand) o;
-        return Objects.equal(namedParameterJdbcTemplate, that.namedParameterJdbcTemplate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(namedParameterJdbcTemplate);
-    }
 }

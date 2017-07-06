@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-public class TestAddCommand extends BaseCommandTest {
+public class TestAddCommand extends BaseIntegrationTest {
 
     @Resource
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
