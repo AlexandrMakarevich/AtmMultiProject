@@ -9,12 +9,13 @@ import javax.annotation.Resource;
 
 @RestController
 @Transactional
-public class CurrencyController {
+@RequestMapping("/currency")
+public class RestCurrencyController {
 
     @Resource(name = "currencyDaoImpl")
     private CurrencyDao currencyDao;
 
-    @RequestMapping(value = "/currencyPage", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public Currency getCurrencyByName(@RequestParam(value = "currencyName") String currencyName) {
         Optional<Currency> currency = currencyDao.findCurrency(currencyName);
         if (!currency.isPresent()) {
@@ -23,7 +24,7 @@ public class CurrencyController {
         return currency.get();
     }
 
-    @RequestMapping(value = "/currencyPage", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public int addCurrency(@RequestBody Currency currency) {
         return currencyDao.addCurrency(currency.getName());
     }

@@ -32,7 +32,7 @@ public class TestAccountController extends BaseIntegrationTest {
     @Test
     public void checkWrongAccount() {
         String expectedPageName = "accountJsp";
-        cleanTable("account");
+        cleanTable("debit", "account");
         result.rejectValue("accountName", "account_not_found");
         ModelAndView actualPageName = accountController.checkAccount(account, result, new RedirectAttributesModelMap());
         Assert.assertEquals("ActualPageName must be expectedPageName ", expectedPageName, actualPageName.getViewName());
@@ -41,7 +41,7 @@ public class TestAccountController extends BaseIntegrationTest {
     @Test
     public void checkExistAccount() {
         String expectedPageName = "redirect:/command";
-        cleanTable("account");
+        cleanTable("debit", "account");
         insert("account", "account_name", accountName);
         ModelAndView actualPageName = accountController.checkAccount(account, result, new RedirectAttributesModelMap());
         Assert.assertEquals("ActualPageName must be expectedPageName ", expectedPageName, actualPageName.getViewName());

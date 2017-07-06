@@ -1,14 +1,13 @@
 package com.home.atm.client.controller;
 
-
 import com.home.atm.client.CommandBean;
-import com.home.atm.exception.CustomAtmException;
 import com.home.atm.client.validator.CommandValidator;
 import com.home.atm.command.Command;
 import com.home.atm.command.CommandName;
 import com.home.atm.command.PrintBalance;
 import com.home.atm.command.parser_command.DelegatedInputParser;
 import com.home.atm.exception.AtmException;
+import com.home.atm.exception.ErrorCodes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -66,16 +65,16 @@ public class CommandController {
             model.addAttribute("errorCode", errors.getErrorCodes());
         }
         if (commandPages.get(command.getCommandOperation()) == null) {
-            throw new CustomAtmException("Error configurations.Map not initialized.");
+            throw new AtmException(ErrorCodes.ERROR_CONFIGURATIONS);
         }
         model.addAttribute("commandNameEnum", command.getCommandOperation());
         return commandPages.get(command.getCommandOperation());
     }
 
-    @ExceptionHandler(CustomAtmException.class)
-    public ModelAndView handlerCustomException(CustomAtmException ex) {
+    @ExceptionHandler(AtmException.class)
+    public ModelAndView handlerCustomException(AtmException ex) {
         ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("errorMessage", ex.getErrorMessage());
+        modelAndView.addObject("errorMessage", ex.getErrorCodes());
         return modelAndView;
     }
 

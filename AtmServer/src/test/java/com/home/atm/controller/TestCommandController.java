@@ -8,12 +8,14 @@ import com.home.atm.parser.command.BaseIntegrationTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.MapBindingResult;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 
+@ContextConfiguration(locations = "classpath:atm_server.xml")
 public class TestCommandController extends BaseIntegrationTest {
 
     @Resource(name = "commandController")
@@ -61,7 +63,7 @@ public class TestCommandController extends BaseIntegrationTest {
     @Test
     public void checkExceptionNoCurrency() {
         String commandName = "- eur 100";
-        String expectedMessage = "You don't have money on currency";
+        String expectedMessage = "You don't have money on this currency!";
         String actualMessage = getErrorMessage(commandName);
         Assert.assertEquals("Actual message must be expected", expectedMessage, actualMessage);
     }
@@ -69,7 +71,7 @@ public class TestCommandController extends BaseIntegrationTest {
     @Test
     public void checkExceptionNoChanges() {
         String commandName = "+ xxx 100";
-        String expectedMessage = "No column has been changed!Currency doesn't exist.";
+        String expectedMessage = "You don't have money on currency";
         String actualMessage = getErrorMessage(commandName);
         Assert.assertEquals("Actual message must be expected", expectedMessage, actualMessage);
     }

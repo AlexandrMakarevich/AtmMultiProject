@@ -16,9 +16,4 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  <context-param>
-    <param-name>log4j-config-location</param-name>
-    <param-value>WEB-INF/classes/log4j.properties</param-value>
-  </context-param>
-
 </web-app>

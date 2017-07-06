@@ -24,7 +24,7 @@ public class RestAccountController {
     }
 
     @RequestMapping(value = "/account1", method = RequestMethod.POST)
-    public int processAccount(@RequestBody Account account) {
+    public int createAccount(@RequestBody Account account) {
         return accountDao.addAccount(account.getAccountName());
     }
 
