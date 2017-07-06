@@ -44,7 +44,7 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public int addAccount(String accountName) {
+    public int createAccount(String accountName) {
         String query = "insert into account (account_name) value(:p_account_name)";
         SqlParameterSource namedParameters = new MapSqlParameterSource("p_account_name", accountName);
         int rows = namedParameterJdbcTemplate.update(query, namedParameters);

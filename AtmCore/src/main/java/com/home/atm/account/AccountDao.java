@@ -6,5 +6,5 @@ public interface AccountDao {
 
     Optional<Account> findAccountByName(String accountInput);
 
-    int addAccount(String accountName);
+    int createAccount(String accountName);
 }

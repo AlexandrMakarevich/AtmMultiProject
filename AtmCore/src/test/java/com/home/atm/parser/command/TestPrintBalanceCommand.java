@@ -5,7 +5,6 @@ import com.home.atm.command.PrintBalance;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
@@ -17,9 +16,6 @@ public class TestPrintBalanceCommand extends BaseIntegrationTest {
 
     @Resource(name = "printBalanceCommand")
     private Command command;
-
-    @Resource
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Before
     public void init() {

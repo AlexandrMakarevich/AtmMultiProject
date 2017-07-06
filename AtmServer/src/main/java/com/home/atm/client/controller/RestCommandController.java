@@ -12,11 +12,12 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
+@RequestMapping("/restCommand")
 public class RestCommandController {
 
     private DelegatedInputParser delegatedInputParser;
 
-    @RequestMapping(value = "/commandTest", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public List<PrintBalance> processCommand(@RequestBody CommandBean commandBean) {
         Command commandInt = delegatedInputParser.defaultParseInput(commandBean.getCommandName());
         return commandInt.executeDb(commandBean.getAccountId());

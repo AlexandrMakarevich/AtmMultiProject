@@ -7,14 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
-@RestController
 @Transactional
+@RestController("restAccountController")
 public class RestAccountController {
 
     @Resource(name = "accountDaoImpl")
     private AccountDao accountDao;
 
-    @RequestMapping(value = "/account1/{accountName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/restAccount/{accountName}", method = RequestMethod.GET)
     public Account getAccountByName(@PathVariable("accountName") String accountName) {
         Optional<Account> account = accountDao.findAccountByName(accountName);
         if (!account.isPresent()) {
@@ -25,7 +25,6 @@ public class RestAccountController {
 
     @RequestMapping(value = "/account1", method = RequestMethod.POST)
     public int createAccount(@RequestBody Account account) {
-        return accountDao.addAccount(account.getAccountName());
+        return accountDao.createAccount(account.getAccountName());
     }
-
 }
