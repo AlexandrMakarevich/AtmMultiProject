@@ -46,10 +46,10 @@ public class TestWithdrawCommand extends BaseCommandTest {
 
     @Test
     public void testNotEnoughMoney() {
-        int balanceLitleThanCanWithdraw = 100;
+        int balanceLessThanCanWithdraw = 100;
         int accountId = insert("account", "account_name", accountName);
         int currencyId = insert("currency", "currency_name", currencyName);
-        insertBalance(accountId, currencyId, balanceLitleThanCanWithdraw);
+        insertBalance(accountId, currencyId, balanceLessThanCanWithdraw);
         this.testRuleException.expect(AtmException.class);
         this.testRuleException.expect(new AtmExceptionMatcher(new AtmException(ErrorCodes.NOT_ENOUGH_MONEY)));
         withdrawCommand.executeDb(accountId);
