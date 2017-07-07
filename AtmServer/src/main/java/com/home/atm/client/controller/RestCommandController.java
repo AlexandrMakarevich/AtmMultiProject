@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-@RestController
+@RestController("restCommandController")
 @RequestMapping("/restCommand")
 public class RestCommandController {
 
@@ -19,8 +19,8 @@ public class RestCommandController {
 
     @RequestMapping(method = RequestMethod.POST)
     public List<PrintBalance> processCommand(@RequestBody CommandBean commandBean) {
-        Command commandInt = delegatedInputParser.defaultParseInput(commandBean.getCommandName());
-        return commandInt.executeDb(commandBean.getAccountId());
+        Command command = delegatedInputParser.defaultParseInput(commandBean.getCommandName());
+        return command.executeDb(commandBean.getAccountId());
     }
 
     @Resource(name = "delegatedInputParser")

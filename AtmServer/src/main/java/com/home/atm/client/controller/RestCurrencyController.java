@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
-@RestController
+@RestController("restCurrencyController")
 @Transactional
 @RequestMapping("/currency")
 public class RestCurrencyController {
