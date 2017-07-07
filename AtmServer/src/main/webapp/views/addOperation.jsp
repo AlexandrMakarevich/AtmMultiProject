@@ -7,6 +7,7 @@
     <title>Operation add balance</title>
 </head>
 <body>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <spring:eval expression="errorCode == T(com.home.atm.exception.ErrorCodes).NO_CHANGES" var="isError"/>
 <c:if test="${isError}">
     No column has been changed!Currency doesn't exist.
@@ -21,6 +22,6 @@
         Add on your balance ${printAdd.balance} in currency ${printAdd.currency}!<br/>
     </c:forEach>
 </c:if>
-<h3><a href="/account"><input type="submit" value="Back to previous menu"/></a></h3>
+<h3><a href="${contextPath}/account"><input type="submit" value="Back to previous menu"/></a></h3>
 </body>
 </html>
