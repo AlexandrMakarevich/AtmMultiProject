@@ -13,6 +13,7 @@
     <module>AtmCore</module>
     <module>AtmTerminal</module>
     <module>AtmServer</module>
+    <module>AtmGui</module>
   </modules>
 
   <properties>
