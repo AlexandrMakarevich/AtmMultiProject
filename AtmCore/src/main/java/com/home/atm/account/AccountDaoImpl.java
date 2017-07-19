@@ -6,7 +6,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
-
 import javax.annotation.Resource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,5 +52,26 @@ public class AccountDaoImpl implements AccountDao {
             throw new IllegalStateException("No column was changed!");
         }
         return rows;
+    }
+
+    @Override
+    public void deleteAccount(int accountId) {
+        String query = "delete from account where id = :p_account_id";
+        SqlParameterSource namedParameter = new MapSqlParameterSource("p_account_id", accountId);
+        namedParameterJdbcTemplate.update(query, namedParameter);
+    }
+
+    @Override
+    public List<Account> getAllAccounts() {
+        String query = "select * from account";
+        return namedParameterJdbcTemplate.query(query, new RowMapper<Account>() {
+            @Override
+            public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Account account = new Account();
+                account.setAccountId(rs.getInt(1));
+                account.setAccountName(rs.getString(2));
+                return account;
+            }
+        });
     }
 }
