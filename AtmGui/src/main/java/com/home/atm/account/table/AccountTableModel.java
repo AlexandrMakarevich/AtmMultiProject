@@ -1,11 +1,11 @@
-package com.account.table;
+package com.home.atm.account.table;
 
 import com.home.atm.account.Account;
 import org.springframework.stereotype.Component;
 import javax.swing.table.AbstractTableModel;
 import java.util.Arrays;
 import java.util.List;
-import static com.account.table.AccountTableModel.ACCOUNT_TABLE_MODEL_BEAN_NAME;
+import static com.home.atm.account.table.AccountTableModel.ACCOUNT_TABLE_MODEL_BEAN_NAME;
 
 @Component(ACCOUNT_TABLE_MODEL_BEAN_NAME)
 public class AccountTableModel extends AbstractTableModel {

@@ -1,13 +1,13 @@
-package com.account.listener;
+package com.home.atm.account.listener;
 
-import com.account.table.AccountTable;
+import com.home.atm.account.table.AccountTable;
 import com.home.atm.account.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static com.account.listener.AddAccountButtonListener.ADD_ACCOUNT_BUTTON_LISTENER_BEAN_NAME;
+import static com.home.atm.account.listener.AddAccountButtonListener.ADD_ACCOUNT_BUTTON_LISTENER_BEAN_NAME;
 
 @Component(ADD_ACCOUNT_BUTTON_LISTENER_BEAN_NAME)
 public class AddAccountButtonListener implements ActionListener {

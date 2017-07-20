@@ -1,6 +1,6 @@
-package com.account;
+package com.home.atm.account;
 
-import com.account.panel.AccountPanel;
+import com.home.atm.account.panel.AccountPanel;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.swing.*;

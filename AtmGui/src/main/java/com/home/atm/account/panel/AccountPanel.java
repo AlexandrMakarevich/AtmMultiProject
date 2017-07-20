@@ -1,12 +1,12 @@
-package com.account.panel;
+package com.home.atm.account.panel;
 
-import com.account.table.AccountTable;
-import com.account.table.AccountTableModel;
+import com.home.atm.account.table.AccountTable;
+import com.home.atm.account.table.AccountTableModel;
 import org.springframework.context.ApplicationContext;
 import javax.swing.*;
 import java.awt.*;
-import static com.account.table.AccountTable.ACCOUNT_TABLE_BEAN_NAME;
-import static com.account.table.AccountTableModel.ACCOUNT_TABLE_MODEL_BEAN_NAME;
+import static com.home.atm.account.table.AccountTable.ACCOUNT_TABLE_BEAN_NAME;
+import static com.home.atm.account.table.AccountTableModel.ACCOUNT_TABLE_MODEL_BEAN_NAME;
 
 public class AccountPanel extends JPanel {
 

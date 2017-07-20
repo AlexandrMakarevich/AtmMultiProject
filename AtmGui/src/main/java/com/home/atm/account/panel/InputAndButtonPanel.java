@@ -1,12 +1,12 @@
-package com.account.panel;
+package com.home.atm.account.panel;
 
-import com.account.listener.AddAccountButtonListener;
-import com.account.listener.DeleteAccountButtonListener;
+import com.home.atm.account.listener.AddAccountButtonListener;
+import com.home.atm.account.listener.DeleteAccountButtonListener;
 import org.springframework.context.ApplicationContext;
 import javax.swing.*;
 import java.awt.*;
-import static com.account.listener.AddAccountButtonListener.ADD_ACCOUNT_BUTTON_LISTENER_BEAN_NAME;
-import static com.account.listener.DeleteAccountButtonListener.DELETE_ACCOUNT_BUTTON_LISTENER_BEAN;
+import static com.home.atm.account.listener.AddAccountButtonListener.ADD_ACCOUNT_BUTTON_LISTENER_BEAN_NAME;
+import static com.home.atm.account.listener.DeleteAccountButtonListener.DELETE_ACCOUNT_BUTTON_LISTENER_BEAN;
 
 public class InputAndButtonPanel extends JPanel {
 
