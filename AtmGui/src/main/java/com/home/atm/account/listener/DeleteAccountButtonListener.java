@@ -2,8 +2,8 @@ package com.home.atm.account.listener;
 
 import com.home.atm.account.table.AccountTable;
 import com.home.atm.account.AccountDao;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +40,7 @@ public class DeleteAccountButtonListener implements ActionListener {
         this.accountTable = accountTable;
     }
 
-    @Autowired
+    @Resource(name = "restAccountDaoImpl")
     public void setAccountDao(AccountDao accountDao) {
         this.accountDao = accountDao;
     }

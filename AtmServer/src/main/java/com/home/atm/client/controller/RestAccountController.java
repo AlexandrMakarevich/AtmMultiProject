@@ -6,6 +6,7 @@ import com.home.atm.account.AccountDao;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 @Transactional
 @RestController("restAccountController")
@@ -21,6 +22,11 @@ public class RestAccountController {
             throw new IllegalStateException("No column was changed!");
         }
         return account.get();
+    }
+
+    @RequestMapping(value = "/restAccount1", method = RequestMethod.GET)
+    public List<Account> getAllAccounts() {
+        return accountDao.getAllAccounts();
     }
 
     @RequestMapping(value = "/account1", method = RequestMethod.POST)

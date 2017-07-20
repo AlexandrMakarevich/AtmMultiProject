@@ -3,6 +3,7 @@ package com.home.atm.account.table;
 import com.home.atm.account.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 import javax.swing.*;
 import static com.home.atm.account.table.AccountTable.ACCOUNT_TABLE_BEAN_NAME;
 
@@ -23,7 +24,7 @@ public class AccountTable extends JTable {
         this.accountTableModel = accountTableModel;
     }
 
-    @Autowired
+    @Resource(name = "restAccountDaoImpl")
     public void setAccountDao(AccountDao accountDao) {
         this.accountDao = accountDao;
     }
