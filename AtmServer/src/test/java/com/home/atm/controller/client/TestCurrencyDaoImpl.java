@@ -1,8 +1,8 @@
 package com.home.atm.controller.client;
 
 import com.google.common.base.Optional;
-import com.home.atm.client.Currency;
-import com.home.atm.client.CurrencyDao;
+import com.home.atm.currency.Currency;
+import com.home.atm.currency.CurrencyDao;
 import com.home.atm.parser.command.BaseIntegrationTest;
 import org.junit.Assert;
 import org.junit.Before;

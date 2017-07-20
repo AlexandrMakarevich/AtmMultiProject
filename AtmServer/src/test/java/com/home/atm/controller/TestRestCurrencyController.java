@@ -1,7 +1,8 @@
 package com.home.atm.controller;
 
-import com.home.atm.client.Currency;
+
 import com.home.atm.client.controller.RestCurrencyController;
+import com.home.atm.currency.Currency;
 import com.home.atm.parser.command.BaseIntegrationTest;
 import org.junit.Assert;
 import org.junit.Before;

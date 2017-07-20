@@ -1,8 +1,8 @@
 package com.home.atm.client.controller;
 
 import com.google.common.base.Optional;
-import com.home.atm.client.Currency;
-import com.home.atm.client.CurrencyDao;
+import com.home.atm.currency.Currency;
+import com.home.atm.currency.CurrencyDao;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;

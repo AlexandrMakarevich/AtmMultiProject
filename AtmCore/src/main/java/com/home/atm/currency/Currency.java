@@ -1,4 +1,4 @@
-package com.home.atm.client;
+package com.home.atm.currency;
 
 public class Currency {
 
