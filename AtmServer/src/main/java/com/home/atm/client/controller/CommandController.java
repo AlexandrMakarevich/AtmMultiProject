@@ -9,6 +9,7 @@ import com.home.atm.command.parser_command.DelegatedInputParser;
 import com.home.atm.exception.AtmException;
 import com.home.atm.exception.ErrorCodes;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,9 +25,9 @@ import java.util.Map;
 import static com.home.atm.client.controller.AccountController.ACCOUNT_ID_ATTRIBUTE_NAME;
 import static com.home.atm.client.controller.AccountController.ACCOUNT_NAME_MODEL_ATTRIBUTE;
 
-
 @Controller("commandController")
 @RequestMapping("/command")
+@Transactional
 public class CommandController {
 
     @Resource(name = "commandValidator")

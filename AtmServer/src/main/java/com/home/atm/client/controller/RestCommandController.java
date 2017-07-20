@@ -4,6 +4,7 @@ import com.home.atm.client.CommandBean;
 import com.home.atm.command.Command;
 import com.home.atm.command.PrintBalance;
 import com.home.atm.command.parser_command.DelegatedInputParser;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController("restCommandController")
 @RequestMapping("/restCommand")
+@Transactional
 public class RestCommandController {
 
     private DelegatedInputParser delegatedInputParser;

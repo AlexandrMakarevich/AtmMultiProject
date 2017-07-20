@@ -14,7 +14,7 @@ public class AddOutputResult implements OutputResult {
             return;
         }
         PrintBalance printBalance = printBalances.get(0);
-        String formattedString = String.format("Added %s in currency %d.", printBalance.getBalance(),
+        String formattedString = String.format("Added %d in currency %s.", printBalance.getBalance(),
                 printBalance.getCurrency());
         System.out.println(formattedString);
     }

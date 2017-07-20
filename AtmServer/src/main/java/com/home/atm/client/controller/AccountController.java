@@ -4,6 +4,7 @@ import com.home.atm.account.Account;
 import com.home.atm.client.validator.AccountValidator;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 
 @Controller("accountController")
 @RequestMapping("/account")
+@Transactional
 public class AccountController {
 
     @Resource(name = "accountValidator")
