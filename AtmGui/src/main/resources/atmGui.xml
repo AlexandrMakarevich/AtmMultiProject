@@ -8,7 +8,6 @@
     <context:property-placeholder location="classpath:atmGui.properties, classpath:atm.properties"/>
     <context:annotation-config/>
     <import resource="classpath:/atm_core.xml"/>
-    <import resource="classpath:/atm_server.xml"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="jdbcUrl" value="${url}"/>

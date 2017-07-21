@@ -15,22 +15,27 @@ public class RestAccountController {
     @Resource(name = "accountDaoImpl")
     private AccountDao accountDao;
 
-    @RequestMapping(value = "/restAccount/{accountName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/{accountName}", method = RequestMethod.GET)
     public Account getAccountByName(@PathVariable("accountName") String accountName) {
         Optional<Account> account = accountDao.findAccountByName(accountName);
         if (!account.isPresent()) {
-            throw new IllegalStateException("No column was changed!");
+            throw new IllegalStateException("Account doesn't exist!");
         }
         return account.get();
     }
 
-    @RequestMapping(value = "/restAccount1", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllAccounts", method = RequestMethod.GET)
     public List<Account> getAllAccounts() {
         return accountDao.getAllAccounts();
     }
 
-    @RequestMapping(value = "/account1", method = RequestMethod.POST)
-    public int createAccount(@RequestBody Account account) {
-        return accountDao.createAccount(account.getAccountName());
+    @RequestMapping(value = "/deleteAccount", method = RequestMethod.POST)
+    public void deleteAccount(@RequestBody int accountId) {
+        accountDao.deleteAccount(accountId);
+    }
+
+    @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
+    public int createAccount(@RequestBody String accountName) {
+        return accountDao.createAccount(accountName);
     }
 }

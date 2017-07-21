@@ -47,7 +47,7 @@ public class TestRestAccountController extends BaseIntegrationTest {
         int expectedResult = 1;
         Account account = new Account();
         account.setAccountName(accountName);
-        int actualResult = restAccountController.createAccount(account);
+        int actualResult = restAccountController.createAccount(account.getAccountName());
         Assert.assertEquals("Actual result must be expected", expectedResult, actualResult);
     }
 }
