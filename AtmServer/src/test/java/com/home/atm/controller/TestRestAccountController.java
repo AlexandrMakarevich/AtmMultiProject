@@ -38,7 +38,7 @@ public class TestRestAccountController extends BaseIntegrationTest {
     public void testWhenAccountNotExist() {
         String accountName = "jora";
         this.testRuleException.expect(IllegalStateException.class);
-        this.testRuleException.expectMessage("No column was changed!");
+        this.testRuleException.expectMessage("Account doesn't exist!");
         restAccountController.getAccountByName(accountName);
     }
 

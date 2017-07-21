@@ -15,15 +15,6 @@ public class RestCurrencyController {
     @Resource(name = "currencyDaoImpl")
     private CurrencyDao currencyDao;
 
-    @RequestMapping(value = "/currency" ,method = RequestMethod.GET)
-    public Currency getCurrencyByName(@RequestParam(value = "currencyName") String currencyName) {
-        Optional<Currency> currency = currencyDao.findCurrency(currencyName);
-        if (!currency.isPresent()) {
-            throw new IllegalStateException("Currency doesn't exist");
-        }
-        return currency.get();
-    }
-
     @RequestMapping(value = "/getAllCurrency", method = RequestMethod.GET)
     public List<Currency> getAllCurrency() {
         return currencyDao.getAllCurrency();

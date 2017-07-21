@@ -1,6 +1,5 @@
 package com.home.atm.controller;
 
-
 import com.home.atm.client.controller.RestCurrencyController;
 import com.home.atm.currency.Currency;
 import com.home.atm.parser.command.BaseIntegrationTest;
@@ -26,20 +25,6 @@ public class TestRestCurrencyController extends BaseIntegrationTest {
 
     @Rule
     public ExpectedException testRuleException = ExpectedException.none();
-
-    @Test
-    public void testGetCurrencyByName() {
-        insert("currency", "currency_name", currencyName);
-        Currency currency = restCurrencyController.getCurrencyByName(currencyName);
-        Assert.assertEquals("Actual result must be expected", currencyName, currency.getName());
-    }
-
-    @Test
-    public void testWhenCurrencyNotExist() {
-        testRuleException.expect(IllegalStateException.class);
-        testRuleException.expectMessage("Currency doesn't exist");
-        restCurrencyController.getCurrencyByName(currencyName);
-    }
 
     @Test
     public void testAddCurrency() {

@@ -3,15 +3,13 @@ package com.home.atm.account;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Optional;
+import com.home.atm.BaseRestDaoImpl;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.List;
 
 @Repository("restAccountDaoImpl")
-public class RestAccountDaoImpl implements AccountDao {
-
-    private RestTemplate restTemplate = new RestTemplate();
+public class RestAccountDaoImpl extends BaseRestDaoImpl implements AccountDao {
 
     @Override
     public Optional<Account> findAccountByName(String accountInput) {
@@ -20,19 +18,19 @@ public class RestAccountDaoImpl implements AccountDao {
 
     @Override
     public int createAccount(String accountName) {
-        restTemplate.postForObject("http://localhost:8080/AtmServer/createAccount", accountName, String.class);
+        restTemplate.postForObject(baseUrl + "/AtmServer/createAccount", accountName, String.class);
         return 1;
     }
 
     @Override
     public void deleteAccount(int accountId) {
-        restTemplate.postForObject("http://localhost:8080/AtmServer/deleteAccount", accountId, Integer.class);
+        restTemplate.postForObject(baseUrl + "/AtmServer/deleteAccount", accountId, Integer.class);
     }
 
     @Override
     public List<Account> getAllAccounts()  {
         ObjectMapper objectMapper = new ObjectMapper();
-      String accountList = restTemplate.getForObject("http://localhost:8080/AtmServer/getAllAccounts", String.class);
+      String accountList = restTemplate.getForObject(baseUrl + "/AtmServer/getAllAccounts", String.class);
         try {
             return objectMapper.readValue(accountList, new TypeReference<List<Account>>() {});
         } catch (IOException e) {
