@@ -3,8 +3,8 @@ package com.home.atm.currency.listener;
 
 import com.home.atm.currency.CurrencyDao;
 import com.home.atm.currency.table.CurrencyTable;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +37,7 @@ public class AddCurrencyButtonListener implements ActionListener {
         return input;
     }
 
-    @Autowired
+    @Resource(name = "restCurrencyDaoImpl")
     public void setCurrencyDao(CurrencyDao currencyDao) {
         this.currencyDao = currencyDao;
     }

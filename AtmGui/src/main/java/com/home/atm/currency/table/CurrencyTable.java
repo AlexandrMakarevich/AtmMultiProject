@@ -3,6 +3,7 @@ package com.home.atm.currency.table;
 import com.home.atm.currency.CurrencyDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import javax.annotation.Resource;
 import javax.swing.*;
 import static com.home.atm.currency.table.CurrencyTable.CURRENCY_TABLE;
 
@@ -23,7 +24,7 @@ public class CurrencyTable extends JTable {
         this.currencyTableModel = currencyTableModel;
     }
 
-    @Autowired
+    @Resource(name = "restCurrencyDaoImpl")
     public void setCurrencyDao(CurrencyDao currencyDao) {
         this.currencyDao = currencyDao;
     }

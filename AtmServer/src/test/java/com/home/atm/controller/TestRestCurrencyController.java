@@ -46,7 +46,7 @@ public class TestRestCurrencyController extends BaseIntegrationTest {
         int expectedResult = 1;
         Currency currency = new Currency();
         currency.setName(currencyName);
-        int actualResult = restCurrencyController.addCurrency(currency);
+        int actualResult = restCurrencyController.addCurrency(currency.getName());
         Assert.assertEquals("Actual result must be expected", expectedResult, actualResult);
     }
 }

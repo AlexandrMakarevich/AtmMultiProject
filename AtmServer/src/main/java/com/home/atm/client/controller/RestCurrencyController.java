@@ -6,16 +6,16 @@ import com.home.atm.currency.CurrencyDao;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController("restCurrencyController")
 @Transactional
-@RequestMapping("/currency")
 public class RestCurrencyController {
 
     @Resource(name = "currencyDaoImpl")
     private CurrencyDao currencyDao;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/currency" ,method = RequestMethod.GET)
     public Currency getCurrencyByName(@RequestParam(value = "currencyName") String currencyName) {
         Optional<Currency> currency = currencyDao.findCurrency(currencyName);
         if (!currency.isPresent()) {
@@ -24,8 +24,18 @@ public class RestCurrencyController {
         return currency.get();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public int addCurrency(@RequestBody Currency currency) {
-        return currencyDao.addCurrency(currency.getName());
+    @RequestMapping(value = "/getAllCurrency", method = RequestMethod.GET)
+    public List<Currency> getAllCurrency() {
+        return currencyDao.getAllCurrency();
+    }
+
+    @RequestMapping(value = "/deleteCurrency", method = RequestMethod.POST)
+    public void deleteCurrency(@RequestBody int currencyId) {
+        currencyDao.deleteCurrency(currencyId);
+    }
+
+    @RequestMapping(value = "/createCurrency", method = RequestMethod.POST)
+    public int addCurrency(@RequestBody String currencyName) {
+        return currencyDao.addCurrency(currencyName);
     }
 }
